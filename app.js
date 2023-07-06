@@ -3,12 +3,14 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var session = require('express-session')
+var flash = require('connect-flash');
 const { Pool } = require('pg')
  
 const pool = new Pool({
   user: 'postgres',
   host: 'localhost',
-  database: 'users',
+  database: 'posdb',
   password: '12345',
   port: 5432,
 })
@@ -27,6 +29,12 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(session({
+  secret: 'rifqi',
+  resave: false,
+  saveUninitialized: true,
+}))
+app.use(flash());
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
