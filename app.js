@@ -20,6 +20,7 @@ const pool = new Pool({
 
 var indexRouter = require('./routes/index')(pool);
 var usersRouter = require('./routes/users')(pool);
+var unitsRouter = require('./routes/units')(pool);
 
 var app = express();
 
@@ -38,9 +39,12 @@ app.use(session({
   resave: false,
   saveUninitialized: true
 }))
+
 app.use(flash());
+
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/units', unitsRouter);
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());

@@ -11,19 +11,19 @@
   <script src="https://kit.fontawesome.com/6ea2cb925f.js" crossorigin="anonymous"></script>
   <title>Users</title>
 
-
-
   <!-- Custom fonts for this template -->
-  <link href="/sbadmin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href="../sbadmin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link
     href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
     rel="stylesheet">
 
   <!-- Custom styles for this template -->
-  <link href="/sbadmin/css/sb-admin-2.min.css" rel="stylesheet">
+  <link href="../sbadmin/css/sb-admin-2.min.css" rel="stylesheet">
 
   <!-- Custom styles for this page -->
-  <link href="/sbadmin/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+  <link href="../sbadmin/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="fontawesome/css/all.css">
 
 </head>
 
@@ -33,7 +33,7 @@
   <div id="wrapper">
 
     <!-- Sidebar -->
-    <%- include('partials/sidebar.ejs') %>
+    <%- include('../partials/sidebar.ejs') %>
       <!-- End of Sidebar -->
 
       <!-- Content Wrapper -->
@@ -43,7 +43,7 @@
         <div id="content">
 
           <!-- Topbar -->
-          <%- include('partials/topbar.ejs') %>
+          <%- include('../partials/topbar.ejs') %>
             <!-- End of Topbar -->
 
             <!-- Begin Page Content -->
@@ -93,7 +93,7 @@
                             <td>
                               <a href="/users/edit/<%= user.userid %>" class="btn btn-success btn-circle">
                                 <span>
-                                  <i class="fa-solid fa-circle-info"></i>
+                                  <i class="fas fa-info-circle"></i>
                                 </span>
                               </a>
                               <a class="btn btn-danger btn-circle delete-btn" href="#" data-toggle="modal"
@@ -149,48 +149,54 @@
         <!-- End of Main Content -->
 
         <!-- Footer -->
-        <%- include('partials/footer.ejs') %>
+        <%- include('../partials/footer.ejs') %>
           <!-- End of Footer -->
 
       </div>
       <!-- End of Content Wrapper -->
 
+      <!-- Logout Modal-->
+      <%- include('../partials/logoutmodal.ejs') %>
   </div>
+
   <!-- End of Page Wrapper -->
-  <%- include('partials/logoutmodal.ejs') %>
 
-    <!-- Scroll to Top Button-->
-    <a class="scroll-to-top rounded" href="#page-top">
-      <i class="fas fa-angle-up"></i>
-    </a>
-    <!-- Delete Modal -->
+  <!-- Scroll to Top Button-->
+  <a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+  </a>
 
-    <!-- JavaScript -->
-    <!-- Bootstrap core JavaScript-->
-    <script src="/sbadmin/vendor/jquery/jquery.min.js"></script>
-    <script src="/sbadmin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Core plugin JavaScript-->
-    <script src="/sbadmin/vendor/jquery-easing/jquery.easing.min.js"></script>
 
-    <!-- Custom scripts for all pages-->
-    <script src="/javascripts/sb-admin-2.min.js"></script>
 
-    <!-- Page level plugins -->
-    <script src="/sbadmin/vendor/datatables/jquery.dataTables.min.js"></script>
-    <script src="/sbadmin/vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
-    <!-- Page level custom scripts -->
-    <script src="/sbadmin/js/demo/datatables-demo.js"></script>
+  <!-- Bootstrap core JavaScript-->
+  <script src="../sbadmin/vendor/jquery/jquery.min.js"></script>
+  <script src="../sbadmin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-    <script>
-      $(document).ready(function () {
-        $('.delete-btn').click(function () {
-          var userId = $(this).data('id');
-          $('#confirmDelete').attr('href', '/users/delete/' + userId);
-        });
+  <!-- Core plugin JavaScript-->
+  <script src="../sbadmin/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+  <!-- Custom scripts for all pages-->
+  <script src="../sbadmin/js/sb-admin-2.min.js"></script>
+
+  <!-- Page level plugins -->
+  <script src="../sbadmin/vendor/datatables/jquery.dataTables.min.js"></script>
+  <script src="../sbadmin/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+  <!-- Page level custom scripts -->
+  <script src="../sbadmin/js/demo/datatables-demo.js"></script>
+
+
+
+  <script>
+    $(document).ready(function () {
+      $('.delete-btn').click(function () {
+        var userId = $(this).data('id');
+        $('#confirmDelete').attr('href', '/users/delete/' + userId);
       });
-    </script>
+    });
+  </script>
 
 </body>
 

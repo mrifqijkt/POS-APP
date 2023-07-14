@@ -30,7 +30,7 @@
     <!-- Page Wrapper -->
     <div id="wrapper">
       <!-- Sidebar -->
-      <%- include('partials/sidebar.ejs') %>
+      <%- include('../partials/sidebar.ejs') %>
       <!-- End of Sidebar -->
 
       <!-- Content Wrapper -->
@@ -38,21 +38,18 @@
         <!-- Main Content -->
         <div id="content">
           <!-- Topbar -->
-          <%- include('partials/topbar.ejs') %>
+          <%- include('../partials/topbar.ejs') %>
           <!-- End of Topbar -->
         <div class="container-fluid">
           <!-- Begin Page Content -->
           <h1 class="h3 mb-2 text-gray-800">Users</h1>
           <div class="card shadow mb-4">
             <div class="card-header py-3">
-              <%if(renderFrom === "add") {%>
-                <span class="m-0 font-weight-bold text-primary">Form Add</span>
-                <%} if(renderFrom === "edit") {%>
                 <span class="m-0 font-weight-bold text-primary">Form Edit</span>
-                <% } %>
+             
           </div>
             <div class="card-body">
-              <form action="/users/add" method="post">
+              <form action="/users/edit/<%= data.userid %>" method="post">
                 <div class="table-responsive">
                   <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <div class="mb-3 row">
@@ -61,32 +58,30 @@
                         <input type="email" class="form-control" id="email" name="email" value="<%= data.email %>" >
                       </div>
                     </div>
+                    
                     <div class="mb-3 row">
                       <label for="name" class="col-sm-2 col-form-label">Name</label>
                       <div class="col-sm-10">
-                        <input type="text" class="form-control" id="name" name="name" value="<%= data.nama %>" >
+                        <input type="text" class="form-control" id="name" name="name" value="<%= data.name %>">
                       </div>
                     </div>
-                    <div class="mb-3 row">
-                      <label for="password" class="col-sm-2 col-form-label">Password</label>
-                      <div class="col-sm-10">
-                        <input type="password" class="form-control" id="password" name="password" value="<%= data.password %>">
-                      </div>
-                    </div>
+
                     <div class="mb-3 row">
                       <label for="role" class="col-sm-2 col-form-label">Role</label>
                       <div class="col-sm-10">
                         <div class="form-check">
-                          <input class="form-check-input" type="radio" name="role" id="operator" value="operator" value="<%= data.role %>">
+                          <input class="form-check-input" type="radio" name="role" id="operator" value="operator"
+                          <%=data.role=="operator" ? 'checked' : '' %>>
                           <label class="form-check-label" for="operator">Operator</label>
                         </div>
                         <div class="form-check">
-                          <input class="form-check-input" type="radio" name="role" id="admin" value="admin" value="<%= data.admin %>">
+                          <input class="form-check-input" type="radio" name="role" id="admin" value="admin"
+                          <%=data.role=="admin" ? 'checked' : '' %>>
                           <label class="form-check-label" for="admin">Admin</label>
                         </div>
                       </div>
                     </div>
-                    <input type="hidden" name="userid" >
+                    <input type="hidden" name="userid" value="<%= data.userid %>">
                  
                   </table>
                   <button type="submit" class="btn btn-success btn-icon-split">
@@ -112,7 +107,7 @@
         <!-- End of Main Content -->
 
         <!-- Footer -->
-        <%- include('partials/footer.ejs') %>
+        <%- include('../partials/footer.ejs') %>
         <!-- End of Footer -->
       </div>
       <!-- End of Content Wrapper -->
