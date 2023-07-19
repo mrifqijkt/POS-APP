@@ -52,11 +52,11 @@
                 <div class="card-body">
                   <form action="/units/edit/<%= data.unit %>" method="post">
                     <div class="table-responsive">
-                      <table class="table table-bordered">
+                      <table class="" id="dataTable" width="100%" cellspacing="0">
                         <tr>
                           <td>Unit</td>
                           <td>
-                            <input type="text" class="form-control" name="unit" value="<%= data.unit %>" readonly>
+                            <input type="text" class="form-control" name="newUnit" value="<%= data.unit %>">
                           </td>
                         </tr>
                         <tr>
@@ -68,7 +68,8 @@
                         <tr>
                           <td>Note</td>
                           <td>
-                            <input type="text" class="form-control" name="note" value="<%= data.note %>">
+                            <textarea class="form-control" aria-label="With textarea" id="note"
+                            name="note"><%= data.note %></textarea>
                           </td>
                         </tr>
                       </table>

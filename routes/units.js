@@ -12,13 +12,13 @@ module.exports = (pool) => {
         console.error('Error executing query', err);
         res.render('error', { message: 'Error retrieving units' });
       } else {
-        res.render('goodsutil/units', { title: 'Express', users: result.rows });
+        res.render('units/index', { title: 'Express', users: result.rows });
       }
     });
   });
 
   router.get('/add', (req, res, next) => {
-    res.render('goodsutil/add', { title: 'Add Data', current: 'user', user: req.session.user })
+    res.render('units/add', { title: 'Add Data', current: 'user', user: req.session.user })
   });
 
   router.post('/add', async (req, res, next) => {
@@ -39,7 +39,7 @@ module.exports = (pool) => {
       const { unit } = req.params;
       const sql = 'SELECT * FROM units WHERE unit = $1';
       const data = await pool.query(sql, [unit]);
-      res.render('goodsutil/edit', { title: 'Edit Data', current: 'user', user: req.session.user, data: data.rows[0] });
+      res.render('units/edit', { title: 'Edit Data', current: 'user', user: req.session.user, data: data.rows[0] });
     } catch (error) {
       console.log(error);
       res.status(500).json({ error: 'Error Getting Data Unit' });
@@ -49,9 +49,9 @@ module.exports = (pool) => {
   router.post('/edit/:unit', async (req, res, next) => {
     try {
       const { unit } = req.params;
-      const { name, note } = req.body;
-      const sql = 'UPDATE units SET name = $1, note = $2 WHERE unit = $3';
-      await pool.query(sql, [name, note, unit]);
+      const { newUnit,name, note } = req.body;
+      let sql = `UPDATE units SET unit = $1, name = $2, note = $3 WHERE unit = $4`;
+      await pool.query(sql, [newUnit, name, note, unit]);
       console.log('Data Unit Edited');
       res.redirect('/units');
     } catch (error) {
