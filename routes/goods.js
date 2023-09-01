@@ -13,6 +13,7 @@ module.exports = function (pool) {
         data: data.rows,
         user: req.session.user,
         stockAlert,
+        current: 'purchases',
         error: req.flash("error"),
       });
     });

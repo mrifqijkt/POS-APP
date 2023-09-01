@@ -15,7 +15,7 @@ router.get('/', function (req, res, next) {
       console.error('Error executing query', err);
       res.render('error', { message: 'Error retrieving users' });
     } else {
-      res.render('users/index', { title: 'Express', users: result.rows });
+      res.render('users/index', { title: 'Express', users: result.rows , current: 'user'});
     }
   });
 });

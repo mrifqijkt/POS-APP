@@ -13,6 +13,7 @@ module.exports = (pool) => {
             res.render('suppliers/index', {
                 data: data.rows,
                 user: req.session.user,
+                current: 'supplier',
                 error: req.flash("error"),
             });
         });
@@ -23,7 +24,7 @@ module.exports = (pool) => {
 
         res.render('suppliers/add', {
             title: 'Add Data',
-            current: 'user',
+            current: 'supplier',
             user: req.session.user
         })
     })
@@ -49,7 +50,7 @@ module.exports = (pool) => {
             const { supplierid } = req.params
             const sql = 'SELECT * FROM suppliers WHERE supplierid = $1';
             const data = await pool.query(sql, [supplierid])
-            res.render('suppliers/edit', { title: 'Edit Data', current: 'user', user: req.session.user, data: data.rows[0] })
+            res.render('suppliers/edit', { title: 'Edit Data', current: 'supplier', user: req.session.user, data: data.rows[0] })
         } catch (error) {
             console.log(error)
             res.status(500).json({ error: "Error Getting Data User" })

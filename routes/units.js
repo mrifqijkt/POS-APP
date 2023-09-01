@@ -12,13 +12,13 @@ module.exports = (pool) => {
         console.error('Error executing query', err);
         res.render('error', { message: 'Error retrieving units' });
       } else {
-        res.render('units/index', { title: 'Express', users: result.rows });
+        res.render('units/index', { title: 'Express', users: result.rows ,current: 'unit'});
       }
     });
   });
 
   router.get('/add', (req, res, next) => {
-    res.render('units/add', { title: 'Add Data', current: 'user', user: req.session.user })
+    res.render('units/add', { title: 'Add Data', current: 'unit', user: req.session.user })
   });
 
   router.post('/add', async (req, res, next) => {
@@ -39,7 +39,7 @@ module.exports = (pool) => {
       const { unit } = req.params;
       const sql = 'SELECT * FROM units WHERE unit = $1';
       const data = await pool.query(sql, [unit]);
-      res.render('units/edit', { title: 'Edit Data', current: 'user', user: req.session.user, data: data.rows[0] });
+      res.render('units/edit', { title: 'Edit Data', current: 'unit', user: req.session.user, data: data.rows[0] });
     } catch (error) {
       console.log(error);
       res.status(500).json({ error: 'Error Getting Data Unit' });

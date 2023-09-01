@@ -24,6 +24,7 @@ var usersRouter = require('./routes/users')(pool);
 var unitsRouter = require('./routes/units')(pool);
 var goodsRouter = require('./routes/goods')(pool);
 var suppliersRouter = require('./routes/suppliers')(pool);
+var purchasesRouter = require('./routes/purchases')(pool);
 var app = express();
 
 // view engine setup
@@ -36,7 +37,6 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(fileUpload());
-
 app.use(session({
   secret: 'keyboard cat',
   resave: false,
@@ -50,6 +50,7 @@ app.use('/users', usersRouter);
 app.use('/units', unitsRouter);
 app.use('/goods', goodsRouter);
 app.use('/suppliers', suppliersRouter);
+app.use('/purchases', purchasesRouter);
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
